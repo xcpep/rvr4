@@ -1,2 +1,2 @@
 # Containers
-Generic docker containers designed to run source engine games.
+Generic docker containers designed to run arma 3 games.
