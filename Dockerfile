@@ -3,11 +3,13 @@
 # Environment: RVR4
 # Minimum Panel Version: 0.6.0
 # ----------------------------------
-FROM        ubuntu:16.04
+FROM        ubuntu
 
 MAINTAINER  Pterodactyl Software, <support@pterodactyl.io>
 ENV         DEBIAN_FRONTEND noninteractive
+
 # Install Dependencies
+RUN 		echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN         dpkg --add-architecture i386 \
             && apt-get update \
             && apt-get upgrade -y \
@@ -17,9 +19,6 @@ RUN         dpkg --add-architecture i386 \
 USER        container
 ENV         HOME /home/container
 WORKDIR     /home/container
-
-COPY        ./install.sh /install.sh
-RUN         chmod +x /install.sh && /install.sh && rm -f /install.sh
 
 COPY        ./entrypoint.sh /entrypoint.sh
 CMD         ["/bin/bash", "/entrypoint.sh"]
