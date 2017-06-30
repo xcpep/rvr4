@@ -3,7 +3,7 @@ sleep 2
 
 cd /home/container
 
-if [[ ! -d server ]] || [[ ${UPDATE} == "yes" ]]; then
+if [[ ! -f ${SERVER_EXE} ]] || [[ ${UPDATE} == "yes" ]]; then
     cd steamcmd
     ./steamcmd.sh +login ${STEAM_USER} ${STEAM_PASS} +force_install_dir ../ +app_update ${APP_ID} validate +quit
 

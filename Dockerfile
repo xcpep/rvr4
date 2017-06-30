@@ -19,7 +19,7 @@ ENV         HOME /home/container
 WORKDIR     /home/container
 
 COPY        ./install.sh /install.sh
-RUN         chmod x /install.sh && /install.sh && rm -f /install.sh
+RUN         chmod +x /install.sh && /install.sh && rm -f /install.sh
 
 COPY        ./entrypoint.sh /entrypoint.sh
 CMD         ["/bin/bash", "/entrypoint.sh"]
