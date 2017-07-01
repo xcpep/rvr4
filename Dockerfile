@@ -13,12 +13,10 @@ RUN 		echo 'debconf debconf/frontend select Noninteractive' | debconf-set-select
 RUN         dpkg --add-architecture i386 \
             && apt-get update \
             && apt-get upgrade -y \
-            && apt-get install -y tar curl gcc g++ lib32gcc1 lib32tinfo5 lib32z1 lib32stdc++6 libtinfo5:i386 libncurses5:i386 libcurl3-gnutls:i386 \
-            && useradd -m -d /home/container container
-
+            && apt-get install -y sudo tar curl gcc g++ lib32gcc1 lib32tinfo5 lib32z1 lib32stdc++6 libtinfo5:i386 libncurses5:i386 libcurl3-gnutls:i386 \
+            && adduser --disabled-password --uid 15000 --gid 0 --gecos container container \
+			&& adduser container sudo 
+			&& echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER        container
-ENV         HOME /home/container
-WORKDIR     /home/container
-
 COPY        ./entrypoint.sh /entrypoint.sh
-CMD         ["su", "-", "container", "-c", "/bin/bash", "/entrypoint.sh"]
+CMD         ["/bin/bash", "/entrypoint.sh"]
