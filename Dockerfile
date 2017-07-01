@@ -7,7 +7,7 @@ FROM        ubuntu:16.04
 
 MAINTAINER  Pterodactyl Software, <support@pterodactyl.io>
 ENV         DEBIAN_FRONTEND noninteractive
-ENV         USER_NAME root
+ENV         USER_NAME container
 ENV         NSS_WRAPPER_PASSWD /tmp/passwd 
 ENV         NSS_WRAPPER_GROUP /tmp/group
 
