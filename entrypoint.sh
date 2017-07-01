@@ -1,12 +1,11 @@
 #!/bin/bash
 sleep 2
 
-if ! id -u $SERVER_UID > /dev/null 2>&1; then 
-	useradd -m -d /home/container -s /bin/bash -g 0 -u $SERVER_UID container
-	cd /home/container
-fi
-
-su container
+# $NSS_WRAPPER_PASSWD and $NSS_WRAPPER_GROUP have been set by the Dockerfile
+export USER_ID=$(id -u)
+export GROUP_ID=$(id -g)
+envsubst < /passwd.template > ${NSS_WRAPPER_PASSWD}
+export LD_PRELOAD=libnss_wrapper.so
 
 #Install the Server
 if [[ ! -d /home/container/server ]] || [[ ${UPDATE} == "yes" ]]; then
