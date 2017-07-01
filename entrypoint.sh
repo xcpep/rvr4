@@ -1,8 +1,11 @@
 #!/bin/bash
 sleep 2
 
-useradd -m -d /home/container -s /bin/bash -g $SERVER_UID -u $SERVER_UID container
-cd /home/container
+if ! id -u $SERVER_UID > /dev/null 2>&1; then 
+	groupadd -g $SERVER_UID container
+	useradd -m -d /home/container -s /bin/bash -g $SERVER_UID -u $SERVER_UID container
+	cd /home/container
+fi
 
 su container
 
