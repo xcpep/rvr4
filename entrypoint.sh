@@ -1,10 +1,8 @@
 #!/bin/bash
 sleep 2
 
-if [ getent passwd $(id -u) > /dev/null 2>&1 ]; then
-	adduser --disabled-password --uid "$(id -u)" --gid 0 --gecos container container \
-	&& adduser container sudo \
-	&& echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+if [ $(id -u container) == 1001 ]; then
+	usermod -u "$(id -u)" container
 fi
 
 #Install the Server
