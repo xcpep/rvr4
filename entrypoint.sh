@@ -1,6 +1,10 @@
 #!/bin/bash
 sleep 2
 
+if [ $(id -u container) == 1001 ]; then
+	usermod -u "$(id -u)" container
+fi
+
 #Install the Server
 if [[ ! -d /home/container/server ]] || [[ ${UPDATE} == "yes" ]]; then
 
