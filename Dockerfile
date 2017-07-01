@@ -5,7 +5,7 @@
 # ----------------------------------
 FROM        ubuntu:16.04
 
-MAINTAINERPterodactyl Software, <support@pterodactyl.io>
+MAINTAINER  Pterodactyl Software, <support@pterodactyl.io>
 ENV         DEBIAN_FRONTEND noninteractive
 
 # Install Dependencies
