@@ -37,7 +37,7 @@ envsubst < /passwd.template > ${NSS_WRAPPER_PASSWD}
 export LD_PRELOAD=/usr/lib/libnss_wrapper.so
 
 # Run the Server
-exec ${MODIFIED_STARTUP}
+${MODIFIED_STARTUP}
 
 if [ $? -ne 0 ]; then
     echo "PTDL_CONTAINER_ERR: There was an error while attempting to run the start command."
