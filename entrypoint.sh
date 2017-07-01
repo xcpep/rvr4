@@ -1,4 +1,10 @@
 #!/bin/bash
+
+#fix user
+adduser --disabled-password --uid $(id -u) --gid 0 --gecos container container \ 
+adduser container sudo
+echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
 sleep 2
 
 #Install the Server
