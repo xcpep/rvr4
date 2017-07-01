@@ -16,8 +16,17 @@ if [[ ! -f ${SERVER_EXE} ]] || [[ ${UPDATE} == "yes" ]]; then
 		ln -s ../steamcmd/linux32/steamclient.so ../steamclient.so
 	fi
 	
-	mkdir ../cfg
-	mkdir ../profiles
+	if [[ ! -d ~/.local/share/ ]]; then
+		mkdir -p ~/.local/share/
+	fi
+	
+	if [[ ! -d ../cfg ]]; then
+		mkdir -p ../cfg
+	fi
+	
+	if [[ ! -d ../profiles ]]; then
+		mkdir -p ../profiles
+	fi
 	
 	cd ../
 fi
