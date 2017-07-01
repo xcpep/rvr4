@@ -19,7 +19,7 @@ RUN         echo 'debconf debconf/frontend select Noninteractive' | debconf-set-
 			else \
 				adduser --disabled-password --uid $(id -u) --gid 0 --gecos container container \
 				&& adduser container sudo \
-				&& echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+				&& echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers; \
 			fi
 
 USER        container
