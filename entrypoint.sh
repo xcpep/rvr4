@@ -1,6 +1,11 @@
 #!/bin/bash
 sleep 2
 
+useradd -m -d /home/container -s /bin/bash -g $SERVER_UID -u $SERVER_UID container
+cd /home/container
+
+su container
+
 #Install the Server
 if [[ ! -d /home/container/server ]] || [[ ${UPDATE} == "yes" ]]; then
 
