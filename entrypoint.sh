@@ -1,12 +1,6 @@
 #!/bin/bash
 sleep 2
 
-# $NSS_WRAPPER_PASSWD and $NSS_WRAPPER_GROUP have been set by the Dockerfile
-export USER_ID=$(id -u)
-export GROUP_ID=$(id -g)
-envsubst < /passwd.template > ${NSS_WRAPPER_PASSWD}
-export LD_PRELOAD=libnss_wrapper.so
-
 #Install the Server
 if [[ ! -d /home/container/server ]] || [[ ${UPDATE} == "yes" ]]; then
 
@@ -36,8 +30,14 @@ echo "~/server: ${MODIFIED_STARTUP}"
 
 cd /home/container/server
 
+# $NSS_WRAPPER_PASSWD and $NSS_WRAPPER_GROUP have been set by the Dockerfile
+export USER_ID=$(id -u)
+export GROUP_ID=$(id -g)
+envsubst < /passwd.template > ${NSS_WRAPPER_PASSWD}
+export LD_PRELOAD=/usr/local/lib64/libnss_wrapper.so
+
 # Run the Server
-${MODIFIED_STARTUP}
+exec ${MODIFIED_STARTUP}
 
 if [ $? -ne 0 ]; then
     echo "PTDL_CONTAINER_ERR: There was an error while attempting to run the start command."
