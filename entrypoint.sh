@@ -1,8 +1,6 @@
 #!/bin/bash
 sleep 2
 
-su -m container
-
 #Install the Server
 if [[ ! -d /home/container/server ]] || [[ ${UPDATE} == "yes" ]]; then
 
@@ -33,7 +31,7 @@ echo "~/server: ${MODIFIED_STARTUP}"
 cd /home/container/server
 
 # Run the Server
-sudo -u container ${MODIFIED_STARTUP}
+${MODIFIED_STARTUP}
 
 if [ $? -ne 0 ]; then
     echo "PTDL_CONTAINER_ERR: There was an error while attempting to run the start command."
