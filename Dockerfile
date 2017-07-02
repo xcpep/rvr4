@@ -22,10 +22,12 @@ RUN         dpkg --add-architecture i386 \
             && chmod g+rw ${NSS_WRAPPER_PASSWD} ${NSS_WRAPPER_GROUP}	 		
 			
 ADD         passwd.template /passwd.template
+ADD         passwd.template /passwd.template
 
 USER        container
 ENV         HOME /home/container
 WORKDIR     /home/container
 
+COPY        ./libnss_wrapper.so /libnss_wrapper.so
 COPY        ./entrypoint.sh /entrypoint.sh
 CMD         ["/bin/bash", "/entrypoint.sh"]
