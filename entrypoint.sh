@@ -2,7 +2,7 @@
 sleep 2
 
 #Install the Server
-if [[ ! -d /home/container/server ]] || [[ ${UPDATE} == "yes" ]]; then
+if [[ ! -d /home/container/server ]] || [[ ${UPDATE} == "1" ]]; then
 
     /home/container/steamcmd/steamcmd.sh +login ${STEAM_USER} ${STEAM_PASS} +force_install_dir /home/container/server +app_update ${APP_ID} validate +quit
 
