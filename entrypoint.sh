@@ -4,15 +4,19 @@ sleep 2
 #Install the Server
 if [[ ! -d /home/container/server ]] || [[ ${UPDATE} == "1" ]]; then
 
-    /home/container/steamcmd/steamcmd.sh +login ${STEAM_USER} ${STEAM_PASS} +force_install_dir /home/container/server +app_update ${APP_ID} validate +quit
+	if [[ -f /home/container/steam.txt ]]; then
+		/home/container/steamcmd/steamcmd.sh +login ${STEAM_USER} ${STEAM_PASS} +force_install_dir /home/container/server +app_update ${APP_ID} validate +runscript /home/container/steam.txt +quit
+	else
+		/home/container/steamcmd/steamcmd.sh +login ${STEAM_USER} ${STEAM_PASS} +force_install_dir /home/container/server +app_update ${APP_ID} validate +quit
+	fi
 
 	#fix
-	if [[ ! -d /home/container/server/mpmissions ]]; then
+	if [[ -d /home/container/server/mpmissions ]]; then
 		ln -s /home/container/server/mpmissions /home/container/server/MPMissions
 	fi
 	
 	#fix
-	if [[ ! -f /home/container/server/steamclient.so ]]; then
+	if [[ -f /home/container/server/steamclient.so ]]; then
 		rm /home/container/server/steamclient.so
 		ln -s /home/container/server/steamcmd/linux32/steamclient.so /home/container/server/steamclient.so
 	fi
