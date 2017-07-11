@@ -4,8 +4,18 @@ sleep 2
 #Install the Server
 if [[ ! -d /home/container/server ]] || [[ ${UPDATE} == "1" ]]; then
 	if [[ -f /home/container/steam.txt ]]; then
+		cd /home/container/steamcmd
+		wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+		tar -zxvf steamcmd_linux.tar.gz
+		rm -f steamcmd_linux.tar.gz
+		chmod 777 *
 		/home/container/steamcmd/steamcmd.sh +login ${STEAM_USER} ${STEAM_PASS} +force_install_dir /home/container/server +app_update ${APP_ID} validate +runscript /home/container/steam.txt
 	else
+		cd /home/container/steamcmd
+		wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+		tar -zxvf steamcmd_linux.tar.gz
+		rm -f steamcmd_linux.tar.gz
+		chmod 777 *
 		/home/container/steamcmd/steamcmd.sh +login ${STEAM_USER} ${STEAM_PASS} +force_install_dir /home/container/server +app_update ${APP_ID} validate +quit
 	fi
 fi
