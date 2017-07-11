@@ -10,7 +10,7 @@ ENV         DEBIAN_FRONTEND noninteractive
 ENV         USER_NAME container
 
 # Install Dependencies
-RUN         apt-get update && apt-get install -y lib32gcc1 lib32stdc++6 wget && adduser -D -h /home/container container
+RUN         apt-get update && apt-get install -y lib32gcc1 lib32stdc++6 wget tar curl && adduser -D -h /home/container container
 
 USER        container
 ENV         HOME /home/container
