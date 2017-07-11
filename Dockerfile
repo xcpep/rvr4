@@ -14,11 +14,7 @@ RUN         apt-get update \
             && apt-get install -y apt-utils \
             && apt-get install -y lib32gcc1 lib32stdc++6 wget tar curl \
             && useradd -m -d /home/container container \
-            && mkdir -p /home/container/steamcmd \
-            && cd /home/container/steamcmd \
-            && wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz \
-            && tar -zxvf steamcmd_linux.tar.gz \
-            && rm -f steamcmd_linux.tar.gz
+            && mkdir -p /home/container/steamcmd
 
 USER        container
 ENV         HOME /home/container
