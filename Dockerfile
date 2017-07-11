@@ -16,7 +16,8 @@ RUN         apt-get update \
             && useradd -m -d /home/container container \
             && mkdir -p /home/container/steamcmd \
             && cd /home/container/steamcmd \
-            && wget -q -O - "http://media.steampowered.com/installer/steamcmd_linux.tar.gz" | tar xz & \
+            && wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz \
+            && tar -zxvf steamcmd_linux.tar.gz \
             && rm -f steamcmd_linux.tar.gz
 
 USER        container
