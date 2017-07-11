@@ -12,7 +12,7 @@ ENV         USER_NAME container
 # Install Dependencies
 RUN         apt-get update \
             && apt-get install -y apt-utils lib32gcc1 lib32stdc++6 wget tar curl \
-            && adduser --home /home/container container \
+            && useradd -m -d /home/container container \
             && mkdir -p /home/container/steamcmd \
             && curl -sSLO http://media.steampowered.com/installer/steamcmd_linux.tar.gz \
             && tar -zxvf steamcmd_linux.tar.gz -d /home/container/steamcmd \
